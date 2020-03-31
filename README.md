@@ -12,17 +12,17 @@ Fork this repository to your own Github account.
 
 Then clone the repository to your local machine:
 
-    git clone https://github.com/USERNAME/javascript_practice.git
+    git clone https://github.com/USERNAME/js_practice_march2020.git
 
 Change into the new directory
 
-    cd javascript_practice
+    cd js_practice_march2020
 
 We will be adding more tasks to this repository as the weeks progress, so you'll need to pull in updates that _we_ make to this repository week by week. To do this, you need to link the original Tech Returners Github repository to your local repository on your machine.
 
 To do this, running the following command:
 
-    git remote add upstream https://github.com/techreturners/javascript_practice.git
+    git remote add upstream https://github.com/techreturners/js_practice_march2020.git
 
 This means that there will be links established between:
 
