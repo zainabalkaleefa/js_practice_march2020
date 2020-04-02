@@ -17,8 +17,8 @@ function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
   // Add your code here!
-  
-  return (originalPrice + (vatRate*originalPrice/100));
+  let total= originalPrice + (vatRate*originalPrice/100);
+  return (Math.round(total*1e2)/ 1e2);   // round at most 2 decimal places, but only if necessary
 
 }
 
@@ -26,7 +26,8 @@ function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
   // Add your code here!
-  return (originalPrice- (originalPrice*reduction/100));
+  let total =originalPrice - (originalPrice*reduction/100);
+  return Math.round(total*1e2)/1e2;   //// round at most 2 decimal places, but only if nece
 }
 
 function getMiddleCharacter(str) {
