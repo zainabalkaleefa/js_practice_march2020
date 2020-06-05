@@ -33,8 +33,18 @@ const isValidDNA = str => {
  * @returns {String}
  */
 const getComplementaryDNA = str => {
-  if (str === undefined) throw new Error("str is required");
-};
+   if (str === undefined) throw new Error("A string is required");
+  let arr= str.toUpperCase().split("");
+  let a =[];
+  arr.map( m => {
+    if (m === "A") a.push(m.replace("A","T"));
+    else if (m === "T") a.push(m.replace("T","A"));
+    else if (m === "G") a.push(m.replace("G","C"));
+    else if (m === "C") a.push(m.replace("C","G"));
+    else a.push(m);
+  });
+  return a.join('');
+}
 
 /**
  * This function should receive a number and return true/false depending on whether it is a prime number or not. A prime number is a number that can only be divided evenly by 1 and itself (for example, 7)
@@ -43,6 +53,11 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (isNaN(n)) throw new Error("A number is required");
+  for (let i=2; i<n ; i++){
+    if (n % i === 0) return false;
+  }
+  return true;
 };
 
 /**
@@ -58,7 +73,12 @@ const isItPrime = n => {
  */
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
-  if (fill === undefined) throw new Error("fill is required");
+  if (fill === undefined) throw new Error("A fill is required");
+  let a=[];
+  for (let i=0;i<n;i++){
+    a.push(new Array(n).fill(fill)) ;
+    }
+  return a;
 };
 
 /**
@@ -76,7 +96,15 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
-};
+  if(staff.length===0) return false;
+  let n=0;
+  staff.map( obj => {
+    if (obj.rota.includes(day)) n++;
+  });
+  if (n>2) return true;
+  else return false;
+
+}
 
 module.exports = {
   sumMultiples,
