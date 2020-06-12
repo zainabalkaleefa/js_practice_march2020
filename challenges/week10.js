@@ -4,7 +4,9 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
-  if (isNaN(n)) throw new Error("A number n is required");
+  if (isNaN(n)) throw new Error("An integer number n is required");
+  if (n<0) throw new Error("An integer number n is required");
+  
   const digits = n.toString().split("");
   const realDigits = digits.map(Number)
   let sum =  realDigits.reduce((a, b) => a + b, 0);
@@ -22,6 +24,7 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  
   let array=[];
 
   if (step=== undefined){
@@ -66,6 +69,20 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  
+  let arr=Object.values(users);
+  let arrayOfUsers=[];
+  arr.forEach( obj => {
+      obj.screenTime.forEach( obj1 => {
+      let r= obj1.usage;
+      let sum = Object.values(r).reduce((a, b) => a + b);
+      if (obj1.date === date && sum > 100) { arrayOfUsers.push(obj.username);} 
+      });
+   });
+
+  return arrayOfUsers;
+
+
 };
 
 /**
@@ -99,6 +116,18 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  var array = [].concat.apply([], board);    // combine the subarrays into one array
+for (let i=0; i<7; i+=3){
+  if (array[i]=== array[i+1] && array[i]=== array[i+2]) return array[i].toString();  // check the rows
+}
+for (let i=0; i<3; i++){
+  if (array[i]=== array[i+3] && array[i]=== array[i+6]) return array[i].toString();   //check the columns
+}
+
+if (array[0]===array[4] && array[0]===array[8]) return array[0].toString();      //check the crosses
+else if (array[3]===array[5] && array[3]===array[7]) return array[3].toString();
+else return null;
+
 };
 
 module.exports = {
