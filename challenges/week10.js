@@ -69,7 +69,8 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
-  
+  let d=0;
+  let s=0;
   let arr=Object.values(users);
   let arrayOfUsers=[];
   arr.forEach( obj => {
@@ -77,10 +78,14 @@ const getScreentimeAlertList = (users, date) => {
       let r= obj1.usage;
       let sum = Object.values(r).reduce((a, b) => a + b);
       if (obj1.date === date && sum > 100) { arrayOfUsers.push(obj.username);} 
+      if(obj1.date=== date) d++; 
+      if(obj1.date=== date && sum > 100) s++;
       });
    });
 
-  return arrayOfUsers;
+   if (s===0 && d===0) throw new Error("date is not available");
+   if (d>0 && s===0) throw new Error("No user exceed 100m in that date");
+   else if (d>0 && s>0) {return arrayOfUsers;}
 
 
 };
